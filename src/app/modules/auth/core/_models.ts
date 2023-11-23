@@ -1,6 +1,11 @@
 export interface AuthModel {
-  api_token: string
+  token: string
   refreshToken?: string
+  data: {
+    token: string
+    message?: string
+    success?: boolean
+  }
 }
 
 export interface UserAddressModel {
@@ -50,6 +55,7 @@ export interface UserModel {
   email: string
   first_name: string
   last_name: string
+  blacklisted?: boolean
   fullname?: string
   occupation?: string
   companyName?: string

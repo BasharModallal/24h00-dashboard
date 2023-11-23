@@ -21,8 +21,8 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@demo.com',
-  password: 'demo',
+  email: '',
+  password: '',
 }
 
 /*
@@ -35,6 +35,7 @@ export function Login() {
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
 
+
   const formik = useFormik({
     initialValues,
     validationSchema: loginSchema,
@@ -42,8 +43,13 @@ export function Login() {
       setLoading(true)
       try {
         const {data: auth} = await login(values.email, values.password)
+        auth.token = auth.data['token'];
         saveAuth(auth)
-        const {data: user} = await getUserByToken(auth.api_token)
+        // console.log(auth.token);
+        const {data: user} = await getUserByToken(auth.token)
+        auth.token = user.token;
+        saveAuth(auth)
+        // console.log(user.token);
         setCurrentUser(user)
       } catch (error) {
         console.error(error)

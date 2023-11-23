@@ -32,10 +32,13 @@ const AuthProvider: FC<WithChildren> = ({children}) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
+    // console.log(auth);
     setAuth(auth)
     if (auth) {
+      // console.log('setAuth');
       authHelper.setAuth(auth)
     } else {
+      // console.log('removeAuth');
       authHelper.removeAuth()
     }
   }
@@ -62,6 +65,7 @@ const AuthInit: FC<WithChildren> = ({children}) => {
       try {
         if (!currentUser) {
           const {data} = await getUserByToken(apiToken)
+          authHelper.setAuth(data);
           if (data) {
             setCurrentUser(data)
           }
@@ -76,8 +80,9 @@ const AuthInit: FC<WithChildren> = ({children}) => {
       }
     }
 
-    if (auth && auth.api_token) {
-      requestUser(auth.api_token)
+    console.log(auth);
+    if (auth && auth.token) {
+      requestUser(auth.token)
     } else {
       logout()
       setShowSplashScreen(false)
