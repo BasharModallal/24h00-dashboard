@@ -65,7 +65,7 @@ const AuthInit: FC<WithChildren> = ({children}) => {
       try {
         if (!currentUser) {
           const {data} = await getUserByToken(apiToken)
-          authHelper.setAuth(data);
+          // authHelper.setAuth(data);
           if (data) {
             setCurrentUser(data)
           }
