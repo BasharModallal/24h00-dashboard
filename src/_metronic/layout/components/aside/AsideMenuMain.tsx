@@ -9,11 +9,11 @@ export function AsideMenuMain() {
 
   return (
     <>
-      <AsideMenuItem
+      {/* <AsideMenuItem
         to='/brands'
         icon='element-11'
         title='Brands'
-      />
+      /> */}
       {
         /* 
         <AsideMenuItem
@@ -84,6 +84,8 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/apps/user-management/users' icon='shield-tick' title='User management' /> 
         */
       }
+      <AsideMenuItem to='/apps/brand-management/brands' icon='shield-tick' title='Brand management' />
+
       {
         /* 
         <div className='menu-item'>

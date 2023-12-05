@@ -8,6 +8,7 @@ import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { BrandPage } from '../pages/main/BrandPage'
+import BrandsPage from '../modules/apps/brands/BrandsPage'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -88,6 +89,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <UsersPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='apps/brand-management/*'
+          element={
+            <SuspensedView>
+              <BrandsPage />
             </SuspensedView>
           }
         />
