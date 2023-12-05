@@ -14,11 +14,18 @@ export function AsideMenuMain() {
         icon='element-11'
         title='Brands'
       /> */}
-        <AsideMenuItem
+      <AsideMenuItem
         to='/websites'
         icon='element-12'
         title='Deal Websites'
       />
+      {/* <AsideMenuItem
+        to='/brands'
+        icon='element-12'
+        title='Brands'
+      /> */}
+      <AsideMenuItem to='/brands' icon='shield-tick' title='Brand management' />
+
       {
         /* 
         <AsideMenuItem
@@ -89,7 +96,6 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/apps/user-management/users' icon='shield-tick' title='User management' /> 
         */
       }
-      <AsideMenuItem to='/apps/brand-management/brands' icon='shield-tick' title='Brand management' />
 
       {
         /* 

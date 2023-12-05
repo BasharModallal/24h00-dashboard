@@ -10,7 +10,7 @@ import {
   QUERIES,
   stringifyRequestQuery,
   WithChildren,
-} from '../../../../../../_metronic/helpers'
+} from '../../../../../_metronic/helpers'
 import {getBrands} from './_requests'
 import {Brand} from './_models'
 import {useQueryRequest} from './QueryRequestProvider'

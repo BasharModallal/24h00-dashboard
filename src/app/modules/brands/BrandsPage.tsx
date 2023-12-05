@@ -1,11 +1,11 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
-import {BrandsListWrapper} from './brands-list/BrandsList'
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { PageLink, PageTitle } from "../../../_metronic/layout/core"
+import { BrandsListWrapper } from './brands-list/BrandsList'
 
 const brandsBreadcrumbs: Array<PageLink> = [
   {
     title: 'Brand Management',
-    path: '/apps/brand-management/brands',
+    path: '/brands',
     isSeparator: false,
     isActive: false,
   },
@@ -31,7 +31,7 @@ const BrandsPage = () => {
           }
         />
       </Route>
-      <Route index element={<Navigate to='/apps/brand-management/brands' />} />
+      <Route index element={<Navigate to='/brands' />} />
     </Routes>
   )
 }

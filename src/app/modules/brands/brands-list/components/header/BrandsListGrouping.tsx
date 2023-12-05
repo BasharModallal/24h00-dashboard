@@ -1,5 +1,5 @@
 import {useQueryClient, useMutation} from 'react-query'
-import {QUERIES} from '../../../../../../../_metronic/helpers'
+import {QUERIES} from '../../../../../../_metronic/helpers'
 import {useListView} from '../../core/ListViewProvider'
 import {useQueryResponse} from '../../core/QueryResponseProvider'
 import {deleteSelectedBrands} from '../../core/_requests'

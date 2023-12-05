@@ -1,6 +1,6 @@
 import {useQuery} from 'react-query'
 import {BrandEditModalForm} from './BrandEditModalForm'
-import {isNotEmpty, QUERIES} from '../../../../../../_metronic/helpers'
+import {isNotEmpty, QUERIES} from '../../../../../_metronic/helpers'
 import {useListView} from '../core/ListViewProvider'
 import {getBrandById} from '../core/_requests'
 

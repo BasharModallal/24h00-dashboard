@@ -1,25 +1,25 @@
-import {useMemo} from 'react'
-import {useTable, ColumnInstance, Row} from 'react-table'
-import {CustomHeaderColumn} from './columns/CustomHeaderColumn'
-import {CustomRow} from './columns/CustomRow'
-import {useQueryResponseData, useQueryResponseLoading} from '../core/QueryResponseProvider'
-import {brandsColumns} from './columns/_columns'
-import {Brand} from '../core/_models'
-import {BrandsListLoading} from '../components/loading/BrandsListLoading'
-import {BrandsListPagination} from '../components/pagination/BrandsListPagination'
-import {KTCardBody} from '../../../../../../_metronic/helpers'
+import { useMemo } from 'react'
+import { useTable, ColumnInstance, Row } from 'react-table'
+import { CustomHeaderColumn } from './columns/CustomHeaderColumn'
+import { CustomRow } from './columns/CustomRow'
+import { useQueryResponseData, useQueryResponseLoading } from '../core/QueryResponseProvider'
+import { brandsColumns } from './columns/_columns'
+import { Brand } from '../core/_models'
+import { BrandsListLoading } from '../components/loading/BrandsListLoading'
+import { BrandsListPagination } from '../components/pagination/BrandsListPagination'
+import { KTCardBody } from '../../../../../_metronic/helpers'
 
-const BrandsTable = () => { 
+const BrandsTable = () => {
   const brands = useQueryResponseData()
   const isLoading = useQueryResponseLoading()
   const data = useMemo(() => brands, [brands])
   const columns = useMemo(() => brandsColumns, [])
-  const {getTableProps, getTableBodyProps, headers, rows, prepareRow} = useTable({
+  const { getTableProps, getTableBodyProps, headers, rows, prepareRow } = useTable({
     columns,
     data,
   })
 
- return (
+  return (
     <KTCardBody className='py-4'>
       <div className='table-responsive'>
         <table
@@ -58,4 +58,4 @@ const BrandsTable = () => {
   )
 }
 
-export {BrandsTable}
+export { BrandsTable }

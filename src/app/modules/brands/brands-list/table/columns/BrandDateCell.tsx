@@ -1,7 +1,7 @@
 
 import clsx from 'clsx'
 import { FC } from 'react'
-import { toAbsoluteUrl } from '../../../../../../../_metronic/helpers'
+import { toAbsoluteUrl } from '../../../../../../_metronic/helpers'
 import { Brand } from '../../core/_models'
 import dayjs from 'dayjs'
 

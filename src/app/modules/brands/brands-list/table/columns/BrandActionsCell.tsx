@@ -1,19 +1,19 @@
 
-import {FC, useEffect} from 'react'
-import {useMutation, useQueryClient} from 'react-query'
-import {MenuComponent} from '../../../../../../../_metronic/assets/ts/components'
-import {ID, KTIcon, QUERIES} from '../../../../../../../_metronic/helpers'
-import {useListView} from '../../core/ListViewProvider'
-import {useQueryResponse} from '../../core/QueryResponseProvider'
-import {deleteBrand} from '../../core/_requests'
+import { FC, useEffect } from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { MenuComponent } from '../../../../../../_metronic/assets/ts/components'
+import { ID, KTIcon, QUERIES } from '../../../../../../_metronic/helpers'
+import { useListView } from '../../core/ListViewProvider'
+import { useQueryResponse } from '../../core/QueryResponseProvider'
+import { deleteBrand } from '../../core/_requests'
 
 type Props = {
   id: ID
 }
 
-const BrandActionsCell: FC<Props> = ({id}) => {
-  const {setItemIdForUpdate} = useListView()
-  const {query} = useQueryResponse()
+const BrandActionsCell: FC<Props> = ({ id }) => {
+  const { setItemIdForUpdate } = useListView()
+  const { query } = useQueryResponse()
   const queryClient = useQueryClient()
 
   useEffect(() => {
@@ -73,4 +73,4 @@ const BrandActionsCell: FC<Props> = ({id}) => {
   )
 }
 
-export {BrandActionsCell}
+export { BrandActionsCell }
