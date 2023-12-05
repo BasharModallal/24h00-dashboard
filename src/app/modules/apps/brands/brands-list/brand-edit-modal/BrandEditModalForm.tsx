@@ -15,16 +15,16 @@ type Props = {
 }
 
 const editBrandSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Wrong email format')
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Email is required'),
   name: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Name is required'),
-})
+  image: Yup.mixed().test("fileSize", "The file is too large", (value) => {
+    // if (!value?.length) return true; // attachment is optional
+    // return value?.[0].size && value?.[0].size <= 2000000;
+    return true;
+  }),
+});
 
 const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
   const { setItemIdForUpdate } = useListView()
@@ -32,7 +32,7 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
 
   const [brandForEdit] = useState<Brand>({
     ...brand,
-    images: brand.images || initialBrand.images,
+    image: brand.image || initialBrand.image,
     name: brand.name || initialBrand.name,
   })
 
@@ -44,14 +44,14 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
   }
 
   const blankImg = toAbsoluteUrl('/media/svg/avatars/blank.svg')
-  const brandAvatarImg = toAbsoluteUrl(`/media/${brandForEdit.images?.[0]}`)
+  const brandAvatarImg = toAbsoluteUrl(`/media/${brandForEdit.image}`)
 
   const formik = useFormik({
     initialValues: brandForEdit,
     validationSchema: editBrandSchema,
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true)
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
 
       try {
         if (isNotEmpty(values.id)) {
@@ -70,8 +70,7 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
 
   return (
     <>
-      <form id='kt_modal_add_brand_form' className='form' onSubmit={formik.handleSubmit} noValidate>
-        {/* begin::Scroll */}
+      <form id='kt_modal_add_brand_form' className='form' encType="multipart/form-data" onSubmit={formik.handleSubmit} noValidate>
         <div
           className='d-flex flex-column scroll-y me-n7 pe-7'
           id='kt_modal_add_brand_scroll'
@@ -82,54 +81,24 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
           data-kt-scroll-wrappers='#kt_modal_add_brand_scroll'
           data-kt-scroll-offset='300px'
         >
-          {/* begin::Input group */}
           <div className='fv-row mb-7'>
-            {/* begin::Label */}
-            <label className='d-block fw-bold fs-6 mb-5'>Avatar</label>
-            {/* end::Label */}
+            <label className='d-block fw-bold fs-6 mb-5'>Image</label>
 
-            {/* begin::Image input */}
-            {/* begin::Input group for image upload */}
             <div className='fv-row mb-7'>
-              {/* begin::Label */}
-              <label className='d-block fw-bold fs-6 mb-5'>Avatar</label>
-              {/* end::Label */}
-
-              {/* begin::Image input */}
+              <label className='d-block fw-bold fs-6 mb-5'>Image</label>
               <div
                 className='image-input image-input-outline'
                 data-kt-image-input='true'
                 style={{ backgroundImage: `url('${blankImg}')` }}
               >
-                {/* begin::Preview existing avatar */}
-                <div
-                  className='image-input-wrapper w-125px h-125px'
-                  style={{ backgroundImage: `url('${formik.values.images ? URL.createObjectURL("sadd") : brandAvatarImg}')` }}
-                ></div>
-                {/* end::Preview existing avatar */}
-
-                {/* begin::Input */}
-                <input
-                  type="file"  // Add this line to support file uploads
-                  name="images"  // Set the name attribute to identify the file in the request body
-                  accept="image/*"  // Add this line to specify that only image files are allowed
-                  onChange={(event: any) => {
-                    formik.setFieldValue("images", event.currentTarget.files[0]);
-                  }}
-                />
-                {/* end::Input */}
+                <input id="image" name="image" type="file" onChange={(event) => {
+                  formik.setFieldValue("image", event.currentTarget.files?.[0]);
+                }} />
               </div>
             </div>
-            {/* end::Inp
-            {/* end::Input group */}
-
-            {/* begin::Input group */}
             <div className='fv-row mb-7'>
-              {/* begin::Label */}
               <label className='required fw-bold fs-6 mb-2'>Name</label>
-              {/* end::Label */}
 
-              {/* begin::Input */}
               <input
                 placeholder='Brand name'
                 {...formik.getFieldProps('name')}
@@ -152,14 +121,10 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
                   </div>
                 </div>
               )}
-              {/* end::Input */}
             </div>
-            {/* end::Input group */}
 
           </div>
-          {/* end::Scroll */}
 
-          {/* begin::Actions */}
           <div className='text-center pt-15'>
             <button
               type='reset'
@@ -186,7 +151,6 @@ const BrandEditModalForm: FC<Props> = ({ brand, isBrandLoading }) => {
               )}
             </button>
           </div>
-          {/* end::Actions */}
         </div>
       </form>
       {(formik.isSubmitting || isBrandLoading) && <BrandsListLoading />}

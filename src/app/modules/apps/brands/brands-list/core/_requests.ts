@@ -19,18 +19,42 @@ const getBrandById = (id: ID): Promise<Brand | undefined> => {
 };
 
 const createBrand = (brand: Brand): Promise<Brand | undefined> => {
+  const formData = new FormData();
+  formData.append('name', brand.name || ''); // Assuming brand.name is required
+  formData.append('image', brand.image as Blob);
+
   return axios
-    .put(BRANDS_URL, brand)
+    .post(BRANDS_URL, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response: AxiosResponse<Response<Brand>>) => response.data)
+    .then((response: Response<Brand>) => response.data);
+};
+const updateBrand = (brand: Brand): Promise<Brand | undefined> => {
+  const isImageProvided = Boolean(brand.image);
+
+  const requestData = isImageProvided
+    ? { name: brand.name, image: brand.image as Blob }
+    : { name: brand.name };
+
+  return axios
+    .post(`${BRANDS_URL}/${brand.id}`, isImageProvided ? createFormData(requestData) : requestData)
     .then((response: AxiosResponse<Response<Brand>>) => response.data)
     .then((response: Response<Brand>) => response.data);
 };
 
-const updateBrand = (brand: Brand): Promise<Brand | undefined> => {
-  return axios
-    .post(`${BRANDS_URL}/${brand.id}`, brand)
-    .then((response: AxiosResponse<Response<Brand>>) => response.data)
-    .then((response: Response<Brand>) => response.data);
+const createFormData = (data: Record<string, any>): FormData => {
+  const formData = new FormData();
+
+  Object.entries(data).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+
+  return formData;
 };
+
 
 const deleteBrand = (brandId: ID): Promise<void> => {
   return axios.delete(`${BRANDS_URL}/${brandId}`).then(() => { });
