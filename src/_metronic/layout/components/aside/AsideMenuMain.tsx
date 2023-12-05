@@ -14,6 +14,11 @@ export function AsideMenuMain() {
         icon='element-11'
         title='Brands'
       /> */}
+        <AsideMenuItem
+        to='/websites'
+        icon='element-12'
+        title='Deal Websites'
+      />
       {
         /* 
         <AsideMenuItem

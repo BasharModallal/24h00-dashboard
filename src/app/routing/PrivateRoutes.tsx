@@ -9,6 +9,8 @@ import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { BrandPage } from '../pages/main/BrandPage'
 import BrandsPage from '../modules/apps/brands/BrandsPage'
+import WebsitesPage from "../modules/websites/WebsitesPage";
+import {WebsitesListWrapper} from "../modules/websites/WebsitesList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -17,6 +19,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
 
   return (
     <Routes>
@@ -65,6 +68,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <BrandPage className='' />
+            </SuspensedView>
+          }
+        />
+          <Route
+          path='websites/*'
+          element={
+            <SuspensedView>
+              <WebsitesListWrapper />
             </SuspensedView>
           }
         />
