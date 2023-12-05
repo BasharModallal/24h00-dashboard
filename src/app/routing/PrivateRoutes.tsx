@@ -8,6 +8,9 @@ import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { BrandPage } from '../pages/main/BrandPage'
+import BrandsPage from '../modules/apps/brands/BrandsPage'
+import WebsitesPage from "../modules/websites/WebsitesPage";
+import {WebsitesListWrapper} from "../modules/websites/WebsitesList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -70,6 +73,14 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+          <Route
+          path='websites/*'
+          element={
+            <SuspensedView>
+              <WebsitesListWrapper />
+            </SuspensedView>
+          }
+        />
         <Route
           path='crafted/account/*'
           element={
@@ -110,6 +121,15 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <DealPage />
+            </SuspensedView>
+          }
+        />
+
+        <Route
+          path='apps/brand-management/*'
+          element={
+            <SuspensedView>
+              <BrandsPage />
             </SuspensedView>
           }
         />

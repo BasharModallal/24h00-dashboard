@@ -11,6 +11,7 @@ import {PasswordMeterComponent} from '../../../../_metronic/assets/ts/components
 import {useAuth} from '../core/Auth'
 
 const initialValues = {
+  username: '',
   firstname: '',
   lastname: '',
   email: '',
@@ -20,6 +21,10 @@ const initialValues = {
 }
 
 const registrationSchema = Yup.object().shape({
+  username: Yup.string()
+      .min(3, 'Minimum 3 symbols')
+      .max(50, 'Maximum 50 symbols')
+      .required('Username is required'),
   firstname: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
@@ -34,11 +39,11 @@ const registrationSchema = Yup.object().shape({
     .max(50, 'Maximum 50 symbols')
     .required('Last name is required'),
   password: Yup.string()
-    .min(3, 'Minimum 3 symbols')
+    .min(8, 'Minimum 8 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Password is required'),
   changepassword: Yup.string()
-    .min(3, 'Minimum 3 symbols')
+    .min(8, 'Minimum 8 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Password confirmation is required')
     .oneOf([Yup.ref('password')], "Password and Confirm Password didn't match"),
@@ -55,6 +60,7 @@ export function Registration() {
       setLoading(true)
       try {
         const {data: auth} = await register(
+          values.username,
           values.email,
           values.firstname,
           values.lastname,
@@ -230,6 +236,35 @@ export function Registration() {
         )}
       </div>
       {/* end::Form group */}
+
+      {/* begin::Form group Username */}
+      <div className='fv-row mb-8'>
+        <div className='mb-1'>
+          <label className='form-label fw-bolder text-gray-900 fs-9'>Username</label>
+          <div className='position-relative mb-3'>
+            <input type='text'
+              placeholder='Username'
+                   {...formik.getFieldProps('username')}
+                className={clsx('form-control bg-transparent',
+                    {
+                      'is-invalid': formik.touched.username && formik.errors.username
+                    },
+                    {
+                      'is-valid': formik.touched.username && !formik.errors.username
+                    }
+                    )}
+            />
+            {formik.touched.username && formik.errors.username && (
+                <div className='fv-plugins-message-container'>
+                  <div className='fv-help-block'>
+                    <span role='alert'>{formik.errors.username}</span>
+                  </div>
+                </div>
+            )}
+          </div>
+        </div>
+      </div>
+      {/* end::Form group Username */}
 
       {/* begin::Form group Password */}
       <div className='fv-row mb-8' data-kt-password-meter='true'>
