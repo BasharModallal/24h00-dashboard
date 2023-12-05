@@ -6,7 +6,7 @@ const brandsBreadcrumbs: Array<PageLink> = [
   {
     title: 'Brand Management',
     path: '/brands',
-    isSeparator: false,
+    isSeparator: true,
     isActive: false,
   },
   {

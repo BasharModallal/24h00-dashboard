@@ -29,4 +29,4 @@ const BrandsListWrapper = () => (
   </QueryRequestProvider>
 )
 
-export { BrandsListWrapper }
+export default BrandsListWrapper 
