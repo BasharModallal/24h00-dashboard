@@ -19,8 +19,9 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
-
+  const CategoryPage = lazy(() => import('../../app/category/CategoryPage'))
+  const DealPage = lazy(() => import('../../app/deals/DealPage'))
+   
   return (
     <Routes>
       <Route element={<MasterLayout />}>
@@ -36,6 +37,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route
@@ -103,6 +105,26 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
+<Route
+          path='apps/category-management/*'
+          element={
+            <SuspensedView>
+              <CategoryPage />
+            </SuspensedView>
+          }
+        />
+        {/* Deals */}
+
+<Route
+          path='apps/deals/*'
+          element={
+            <SuspensedView>
+              <DealPage />
+            </SuspensedView>
+          }
+        />
+
         <Route
           path='apps/brand-management/*'
           element={
@@ -111,6 +133,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
