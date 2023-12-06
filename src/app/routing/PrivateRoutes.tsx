@@ -35,6 +35,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route
@@ -103,6 +104,26 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
+        {/* <Route
+          path='apps/category-management/*'
+          element={
+            <SuspensedView>
+              <CategoryPage />
+            </SuspensedView>
+          }
+        />
+
+        <Route
+          path='apps/deals/*'
+          element={
+            <SuspensedView>
+              <DealPage />
+            </SuspensedView>
+          }
+        /> */}
+
+
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
