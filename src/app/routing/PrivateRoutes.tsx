@@ -17,6 +17,9 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const CategoryPage = lazy(() => import('../../app/modules/category/CategoryPage'))
+  const DealPage = lazy(() => import('../../app/deals/DealPage'))
+   
   const BrandsListWrapper = lazy(() => import('../modules/brands/brands-list/BrandsList'))
   // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
 
@@ -105,7 +108,7 @@ const PrivateRoutes = () => {
           }
         />
 
-        {/* <Route
+        <Route
           path='apps/category-management/*'
           element={
             <SuspensedView>
@@ -121,7 +124,7 @@ const PrivateRoutes = () => {
               <DealPage />
             </SuspensedView>
           }
-        /> */}
+        />
 
 
         {/* Page Not Found */}

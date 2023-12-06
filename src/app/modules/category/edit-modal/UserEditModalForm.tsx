@@ -1,35 +1,34 @@
 import {FC, useState} from 'react'
 import * as Yup from 'yup'
 import {useFormik} from 'formik'
-import {isNotEmpty, toAbsoluteUrl} from '../../../_metronic/helpers'
-import {initialDeal, Deal} from '../core/_models'
+import {isNotEmpty, toAbsoluteUrl} from '../../../../_metronic/helpers'
+import {initialCategory, Category} from '../core/_models'
 import clsx from 'clsx'
 import {useListView} from '../core/ListViewProvider'
 import {UsersListLoading} from '../components/loading/UsersListLoading'
-import {createUser, updateUser} from '../core/_requests'
+import {createCategory, updateCategories} from '../core/_requests'
 import {useQueryResponse} from '../core/QueryResponseProvider'
 
 type Props = {
   isUserLoading: boolean
-  deal:Deal
+  category: Category
 }
 
 const editUserSchema = Yup.object().shape({
-  title: Yup.string()
+  name: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
-    .required('title is required'),
+    .required('Name is required'),
 })
 
-const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
+const UserEditModalForm: FC<Props> = ({category, isUserLoading}) => {
   const {setItemIdForUpdate} = useListView()
   const {refetch} = useQueryResponse()
 
-  const [userForEdit] = useState<Deal>({
-    ...deal,
-    image: deal.image || initialDeal.image,
-    title: deal.title || initialDeal.title,
-    description: deal.description || initialDeal.description,
+  const [userForEdit] = useState<Category>({
+    ...category,
+    image: category.image || initialCategory.image,
+    name: category.name || initialCategory.name,
   })
 
   const cancel = (withRefresh?: boolean) => {
@@ -49,9 +48,11 @@ const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
       setSubmitting(true)
       try {
         if (isNotEmpty(values.id)) {
-          await updateUser(values)
+
+          console.log(values);
+          await updateCategories(values)
         } else {
-          await createUser(values)
+          await createCategory(values)
         }
       } catch (ex) {
         console.error(ex)
@@ -96,7 +97,7 @@ const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
               {/* end::Preview existing avatar */}
 
               {/* begin::Label */}
-              <label
+              {/* <label
               className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
               data-kt-image-input-action='change'
               data-bs-toggle='tooltip'
@@ -106,7 +107,7 @@ const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
 
               <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
               <input type='hidden' name='avatar_remove' />
-            </label>
+            </label> */}
               {/* end::Label */}
 
               {/* begin::Cancel */}
@@ -153,18 +154,18 @@ const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
               name='name'
               className={clsx(
                 'form-control form-control-solid mb-3 mb-lg-0',
-                {'is-invalid': formik.touched.title && formik.errors.title},
+                {'is-invalid': formik.touched.name && formik.errors.name},
                 {
-                  'is-valid': formik.touched.title && !formik.errors.title,
+                  'is-valid': formik.touched.name && !formik.errors.name,
                 }
               )}
               autoComplete='off'
               disabled={formik.isSubmitting || isUserLoading}
             />
-            {formik.touched.title && formik.errors.title && (
+            {formik.touched.name && formik.errors.name && (
               <div className='fv-plugins-message-container'>
                 <div className='fv-help-block'>
-                  <span role='alert'>{formik.errors.title}</span>
+                  <span role='alert'>{formik.errors.name}</span>
                 </div>
               </div>
             )}
