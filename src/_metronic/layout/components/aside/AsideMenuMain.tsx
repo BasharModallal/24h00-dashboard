@@ -9,22 +9,40 @@ export function AsideMenuMain() {
 
   return (
     <>
+
       <AsideMenuItem
           to='/apps/deals'
           icon='element-5'
           title='Deals'
       />
-      <AsideMenuItem
+
+      {/* <AsideMenuItem
+
         to='/brands'
         icon='element-11'
         title='Brands'
+      /> */}
+      <AsideMenuItem
+        to='/websites'
+        icon='element-12'
+        title='Deal Websites'
       />
+
       <AsideMenuItem
         to='/apps/category-management/categories'
         icon='element-5'
         title='Categories'
       />
       
+
+      {/* <AsideMenuItem
+        to='/brands'
+        icon='element-12'
+        title='Brands'
+      /> */}
+      <AsideMenuItem to='/brands' icon='shield-tick' title='Brand management' />
+
+>>>>>>> origin/dev
       {
         /* 
         <AsideMenuItem
@@ -95,6 +113,7 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/apps/user-management/users' icon='shield-tick' title='User management' /> 
         */
       }
+
       {
         /* 
         <div className='menu-item'>

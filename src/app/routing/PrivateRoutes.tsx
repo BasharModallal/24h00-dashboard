@@ -7,7 +7,8 @@ import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import { BrandPage } from '../pages/main/BrandPage'
+import { WebsitesListWrapper } from "../modules/websites/WebsitesList.tsx";
+// import { BrandsListWrapper } from "../modules/brands/brands-list/BrandsList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -19,6 +20,9 @@ const PrivateRoutes = () => {
   const CategoryPage = lazy(() => import('../../app/modules/category/CategoryPage'))
   const DealPage = lazy(() => import('../../app/deals/DealPage'))
    
+  const BrandsListWrapper = lazy(() => import('../modules/brands/brands-list/BrandsList'))
+  // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
+
   return (
     <Routes>
       <Route element={<MasterLayout />}>
@@ -66,10 +70,19 @@ const PrivateRoutes = () => {
           path='brands/*'
           element={
             <SuspensedView>
-              <BrandPage className='' />
+              <BrandsListWrapper />
             </SuspensedView>
           }
         />
+        <Route
+          path='websites/*'
+          element={
+            <SuspensedView>
+              <WebsitesListWrapper />
+            </SuspensedView>
+          }
+        />
+
         <Route
           path='crafted/account/*'
           element={
@@ -95,7 +108,7 @@ const PrivateRoutes = () => {
           }
         />
 
-<Route
+        {/* <Route
           path='apps/category-management/*'
           element={
             <SuspensedView>
@@ -103,16 +116,16 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-        {/* Deals */}
 
-<Route
+        <Route
           path='apps/deals/*'
           element={
             <SuspensedView>
               <DealPage />
             </SuspensedView>
           }
-        />
+        /> */}
+
 
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
