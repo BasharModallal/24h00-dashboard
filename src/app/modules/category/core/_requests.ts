@@ -30,7 +30,15 @@ const deleteCategories = (userId: ID): Promise<void> => {
   return axios.delete(`${CATEGORY_URL}/${userId}`).then(() => {});
 };
 
+
+const getCategoryById = (id: ID): Promise<Category | undefined> => {
+  return axios
+    .get(`${CATEGORY_URL}/${id}`)
+    .then((response: AxiosResponse<Response<Category>>) => response.data)
+    .then((response: Response<Category>) => response.data);
+};
 export {
+  getCategoryById,
   createCategory,
   getCategories,
   updateCategories,

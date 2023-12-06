@@ -6,17 +6,27 @@ import {UserActionsCell} from './UserActionsCell'
 import {UserSelectionCell} from './UserSelectionCell'
 import {UserCustomHeader} from './UserCustomHeader'
 import {UserSelectionHeader} from './UserSelectionHeader'
-import {User} from '../../core/_models'
+import {Deal} from '../../core/_models'
 
-const usersColumns: ReadonlyArray<Column<User>> = [
+const usersColumns: ReadonlyArray<Column<Deal>> = [
   {
     Header: (props) => <UserSelectionHeader tableProps={props} />,
     id: 'selection',
     Cell: ({...props}) => <UserSelectionCell id={props.data[props.row.index].id} />,
   },
   {
-    Header: (props) => <UserCustomHeader tableProps={props} title='Category name' className='min-w-125px' />,
+    Header: (props) => <UserCustomHeader tableProps={props} title='Deal Title' className='min-w-125px' />,
     id: 'name',
+    Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
+  },
+  {
+    Header: (props) => <UserCustomHeader tableProps={props} title='Deal expires' className='min-w-125px' />,
+    id: 'expire',
+    Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
+  },
+  {
+  Header: (props) => <UserCustomHeader tableProps={props} title='updated by' className='min-w-125px' />,
+    id: 'user',
     Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
   },
   // {

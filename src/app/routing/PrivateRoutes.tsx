@@ -16,7 +16,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  const CategoryPage = lazy(() => import('../../app/category/CategoryPage'))
+  const CategoryPage = lazy(() => import('../../app/modules/category/CategoryPage'))
   const DealPage = lazy(() => import('../../app/deals/DealPage'))
    
   return (

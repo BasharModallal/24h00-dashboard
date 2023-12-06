@@ -1,17 +1,17 @@
 import {FC, useState} from 'react'
 import * as Yup from 'yup'
 import {useFormik} from 'formik'
-import {isNotEmpty, toAbsoluteUrl} from '../../../../../../_metronic/helpers'
-import {initialUser, User} from '../core/_models'
+import {isNotEmpty, toAbsoluteUrl} from '../../../../_metronic/helpers'
+import {initialCategory, Category} from '../core/_models'
 import clsx from 'clsx'
 import {useListView} from '../core/ListViewProvider'
 import {UsersListLoading} from '../components/loading/UsersListLoading'
-import {createUser, updateUser} from '../core/_requests'
+import {createCategory, updateCategories} from '../core/_requests'
 import {useQueryResponse} from '../core/QueryResponseProvider'
 
 type Props = {
   isUserLoading: boolean
-  user: User
+  category: Category
 }
 
 const editUserSchema = Yup.object().shape({
@@ -21,14 +21,14 @@ const editUserSchema = Yup.object().shape({
     .required('Name is required'),
 })
 
-const UserEditModalForm: FC<Props> = ({user, isUserLoading}) => {
+const UserEditModalForm: FC<Props> = ({category, isUserLoading}) => {
   const {setItemIdForUpdate} = useListView()
   const {refetch} = useQueryResponse()
 
-  const [userForEdit] = useState<User>({
-    ...user,
-    image: user.image || initialUser.image,
-    name: user.name || initialUser.name,
+  const [userForEdit] = useState<Category>({
+    ...category,
+    // image: '',
+    name: category.name || initialCategory.name,
   })
 
   const cancel = (withRefresh?: boolean) => {
@@ -48,9 +48,9 @@ const UserEditModalForm: FC<Props> = ({user, isUserLoading}) => {
       setSubmitting(true)
       try {
         if (isNotEmpty(values.id)) {
-          await updateUser(values)
+          await createCategory(values)
         } else {
-          await createUser(values)
+          await updateCategories(values)
         }
       } catch (ex) {
         console.error(ex)

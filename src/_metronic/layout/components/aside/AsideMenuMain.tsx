@@ -10,10 +10,21 @@ export function AsideMenuMain() {
   return (
     <>
       <AsideMenuItem
+          to='/apps/deals'
+          icon='element-5'
+          title='Deals'
+      />
+      <AsideMenuItem
         to='/brands'
         icon='element-11'
         title='Brands'
       />
+      <AsideMenuItem
+        to='/apps/category-management/categories'
+        icon='element-5'
+        title='Categories'
+      />
+      
       {
         /* 
         <AsideMenuItem

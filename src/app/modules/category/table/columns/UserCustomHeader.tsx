@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 import {FC, PropsWithChildren, useMemo} from 'react'
 import {HeaderProps} from 'react-table'
-import {initialQueryState} from '../../../../../../../_metronic/helpers'
+import {initialQueryState} from '../../../../../_metronic/helpers'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
-import {User} from '../../core/_models'
+import {Category} from '../../core/_models'
 
 type Props = {
   className?: string
   title?: string
-  tableProps: PropsWithChildren<HeaderProps<User>>
+  tableProps: PropsWithChildren<HeaderProps<Category>>
 }
 const UserCustomHeader: FC<Props> = ({className, title, tableProps}) => {
   const id = tableProps.column.id

@@ -29,6 +29,7 @@ const UserEditModalForm: FC<Props> = ({deal, isUserLoading}) => {
     ...deal,
     image: deal.image || initialDeal.image,
     title: deal.title || initialDeal.title,
+    description: deal.description || initialDeal.description,
   })
 
   const cancel = (withRefresh?: boolean) => {

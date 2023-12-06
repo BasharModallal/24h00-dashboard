@@ -10,12 +10,12 @@ import {
   QUERIES,
   stringifyRequestQuery,
   WithChildren,
-} from '../../../../../../_metronic/helpers'
-import {getCategories} from '../../../core/_requests'
-import {User} from './_models'
+} from '../../../../_metronic/helpers'
+import {getCategories} from '../core/_requests'
+import {Category} from './_models'
 import {useQueryRequest} from './QueryRequestProvider'
 
-const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<Category>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({children}) => {
   const {state} = useQueryRequest()
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
