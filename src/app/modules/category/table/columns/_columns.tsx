@@ -6,9 +6,9 @@ import {UserActionsCell} from './UserActionsCell'
 import {UserSelectionCell} from './UserSelectionCell'
 import {UserCustomHeader} from './UserCustomHeader'
 import {UserSelectionHeader} from './UserSelectionHeader'
-import {User} from '../../core/_models'
+import {Category} from '../../core/_models'
 
-const usersColumns: ReadonlyArray<Column<User>> = [
+const usersColumns: ReadonlyArray<Column<Category>> = [
   {
     Header: (props) => <UserSelectionHeader tableProps={props} />,
     id: 'selection',
@@ -17,7 +17,7 @@ const usersColumns: ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <UserCustomHeader tableProps={props} title='Category name' className='min-w-125px' />,
     id: 'name',
-    Cell: ({...props}) => <UserInfoCell user={props.data[props.row.index]} />,
+    Cell: ({...props}) => <UserInfoCell category={props.data[props.row.index]} />,
   },
   // {
   //   Header: (props) => <UserCustomHeader tableProps={props} title='Role' className='min-w-125px' />,

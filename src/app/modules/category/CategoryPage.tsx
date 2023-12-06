@@ -5,7 +5,7 @@ import {CategoryListWrapper} from './CategoryList'
 const usersBreadcrumbs: Array<PageLink> = [
     {
       title: 'Category Management',
-      path: '/apps/category-management/categories',
+      path: '/apps/category-management/index',
       isSeparator: false,
       isActive: false,
     },
@@ -31,7 +31,7 @@ const CategoryPage = () => {
             }
           />
         </Route>
-        <Route index element={<Navigate to='/apps/category-management/categories' />} />
+        <Route index element={<Navigate to='/apps/category-management/index' />} />
       </Routes>
     )
   }

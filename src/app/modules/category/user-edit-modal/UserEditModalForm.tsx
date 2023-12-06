@@ -27,7 +27,7 @@ const UserEditModalForm: FC<Props> = ({category, isUserLoading}) => {
 
   const [userForEdit] = useState<Category>({
     ...category,
-    // image: '',
+    image: category.image || initialCategory.image,
     name: category.name || initialCategory.name,
   })
 
@@ -48,9 +48,11 @@ const UserEditModalForm: FC<Props> = ({category, isUserLoading}) => {
       setSubmitting(true)
       try {
         if (isNotEmpty(values.id)) {
-          await createCategory(values)
-        } else {
+
+          console.log(values);
           await updateCategories(values)
+        } else {
+          await createCategory(values)
         }
       } catch (ex) {
         console.error(ex)

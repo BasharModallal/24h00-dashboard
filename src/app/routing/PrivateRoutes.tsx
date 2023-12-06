@@ -108,7 +108,7 @@ const PrivateRoutes = () => {
           }
         />
 
-        {/* <Route
+        <Route
           path='apps/category-management/*'
           element={
             <SuspensedView>
@@ -124,7 +124,7 @@ const PrivateRoutes = () => {
               <DealPage />
             </SuspensedView>
           }
-        /> */}
+        />
 
 
         {/* Page Not Found */}

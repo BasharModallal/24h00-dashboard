@@ -8,7 +8,7 @@ export const CATEGORY_URL = `${API_URL}/categories`;
 
 const createCategory = (category: Category): Promise<Category | undefined> => {
   return axios
-    .put(CATEGORY_URL, category)
+    .post(CATEGORY_URL, category)
     .then((response: AxiosResponse<Response<Category>>) => response.data)
     .then((response: Response<Category>) => response.data);
 };
@@ -19,15 +19,15 @@ const getCategories = (query: string): Promise<CategoriesQueryResponse> => {
     .then((d: AxiosResponse<CategoriesQueryResponse>) => d.data);
 };
 
-const updateCategories = (user: Category): Promise<Category | undefined> => {
+const updateCategories = (category: Category): Promise<Category | undefined> => {
   return axios
-    .post(`${CATEGORY_URL}/${user.id}`, user)
+    .post(`${CATEGORY_URL}/${category.id}`, category)
     .then((response: AxiosResponse<Response<Category>>) => response.data)
     .then((response: Response<Category>) => response.data);
 };
 
-const deleteCategories = (userId: ID): Promise<void> => {
-  return axios.delete(`${CATEGORY_URL}/${userId}`).then(() => {});
+const deleteCategories = (categoryId: ID): Promise<void> => {
+  return axios.delete(`${CATEGORY_URL}/${categoryId}`).then(() => {});
 };
 
 
@@ -37,10 +37,17 @@ const getCategoryById = (id: ID): Promise<Category | undefined> => {
     .then((response: AxiosResponse<Response<Category>>) => response.data)
     .then((response: Response<Category>) => response.data);
 };
+
+const deleteSelectedCategories = (userIds: Array<ID>): Promise<void> => {
+  const request = userIds.map((id) =>
+  axios.delete(`${CATEGORY_URL}/${id}`));
+  return axios.all(request).then(() => {});
+}
 export {
   getCategoryById,
   createCategory,
   getCategories,
+  deleteSelectedCategories,
   updateCategories,
   deleteCategories,
 };
