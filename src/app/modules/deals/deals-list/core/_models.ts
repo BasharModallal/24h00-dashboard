@@ -81,7 +81,7 @@ interface UserDetails {
   media: string[];
 }
 
-interface DealResponse {
+export interface DealResponse {
   id: number;
   title: string;
   description: string;
@@ -114,6 +114,8 @@ interface DealResponse {
   is_liked: boolean | null;
   is_disliked: boolean | null;
   is_saved: boolean | null;
+  created_at: string | null,
+  updated_at: string | null,
 }
 export type DealsQueryResponse = Response<Array<Deal>>
 

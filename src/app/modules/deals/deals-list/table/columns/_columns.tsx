@@ -4,19 +4,20 @@ import { DealActionsCell } from './DealActionsCell'
 import { DealSelectionCell } from './DealSelectionCell'
 import { DealCustomHeader } from './DealCustomHeader'
 import { DealSelectionHeader } from './DealSelectionHeader'
-import { Deal } from '../../core/_models'
+import { Deal, DealResponse } from '../../core/_models'
 import { DealDateCell } from './DealDateCell'
+import { DealIdCell } from './DealIdCell'
 
-const dealsColumns: ReadonlyArray<Column<Deal>> = [
+const dealsColumns: ReadonlyArray<Column<DealResponse>> = [
   {
-    Header: (props) => <DealSelectionHeader tableProps={props} />,
-    id: 'selection',
-    Cell: ({ ...props }) => <DealSelectionCell id={props.data[props.row.index].id} />,
+    Header: (props) => <DealCustomHeader tableProps={props} title='ID' className='min-w-125px' />,
+    id: 'id',
+    Cell: ({ ...props }) => <DealIdCell deal={props.data[props.row.index]} />,
   },
   {
-    Header: (props) => <DealCustomHeader tableProps={props} title='Name' className='min-w-125px' />,
-    id: 'name',
-    Cell: ({ ...props }) => <DealInfoCell brand={props.data[props.row.index]} />,
+    Header: (props) => <DealCustomHeader tableProps={props} title='Title' className='min-w-125px' />,
+    id: 'title',
+    Cell: ({ ...props }) => <DealInfoCell deal={props.data[props.row.index]} />,
   },
   {
     Header: (props) => <DealCustomHeader tableProps={props} title='Created Date time' className='min-w-125px' />,

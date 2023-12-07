@@ -3,12 +3,12 @@ import {FC, PropsWithChildren, useMemo} from 'react'
 import {HeaderProps} from 'react-table'
 import {initialQueryState} from '../../../../../../_metronic/helpers'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
-import {Deal} from '../../core/_models'
+import {Deal, DealResponse} from '../../core/_models'
 
 type Props = {
   className?: string
   title?: string
-  tableProps: PropsWithChildren<HeaderProps<Deal>>
+  tableProps: PropsWithChildren<HeaderProps<DealResponse>>
 }
 const DealCustomHeader: FC<Props> = ({className, title, tableProps}) => {
   const id = tableProps.column.id

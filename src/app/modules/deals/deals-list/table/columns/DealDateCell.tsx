@@ -2,11 +2,11 @@
 import clsx from 'clsx'
 import { FC } from 'react'
 import { toAbsoluteUrl } from '../../../../../../_metronic/helpers'
-import { Deal } from '../../core/_models'
+import { Deal, DealResponse } from '../../core/_models'
 import dayjs from 'dayjs'
 
 type Props = {
-    deal: Deal
+    deal: DealResponse
 }
 
 const DealDateCell: FC<Props> = ({ deal }) => (

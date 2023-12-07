@@ -1,21 +1,20 @@
 
 import clsx from 'clsx'
 import { FC } from 'react'
-import { toAbsoluteUrl } from '../../../../../../_metronic/helpers'
-import { DealResponse } from '../../core/_models'
+import { Deal, DealResponse } from '../../core/_models'
 
 type Props = {
-  brand: DealResponse
+  deal: DealResponse
 }
 
-const DealInfoCell: FC<Props> = ({ brand }) => (
+const DealInfoCell: FC<Props> = ({ deal }) => (
   <div className='d-flex align-items-center'>
     {/* begin:: Avatar */}
     <div className='symbol symbol-circle symbol-50px overflow-hidden me-3'>
       <a href='#'>
-        {brand.images && brand.images.length > 0 ? (
+        {deal.images && deal.images.length > 0 ? (
           <div className='symbol-label'>
-            <img src={`${brand.images?.[0]}`} alt={brand.name} className='w-100' />
+            <img src={`${deal.images[0]}`} alt={deal.title} className='w-100' />
           </div>
         ) : (
           <div
@@ -25,14 +24,14 @@ const DealInfoCell: FC<Props> = ({ brand }) => (
               `text-primary`
             )}
           >
-            {brand.name?.substring(0, 2)}
+            {deal.title?.substring(0, 2)}
           </div>
         )}
       </a>
     </div>
     <div className='d-flex flex-column'>
       <a href='#' className='text-gray-800 text-hover-primary mb-1'>
-        {brand.name}
+        {deal.title}
 
       </a>
     </div>
