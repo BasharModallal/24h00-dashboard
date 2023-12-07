@@ -8,7 +8,6 @@ import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { WebsitesListWrapper } from "../modules/websites/WebsitesList.tsx";
-// import { BrandsListWrapper } from "../modules/brands/brands-list/BrandsList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -17,11 +16,10 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+
   const CategoryPage = lazy(() => import('../../app/modules/category/CategoryPage'))
-  const DealPage = lazy(() => import('../../app/deals/DealPage'))
-   
+  const DealsListWrapper = lazy(() => import('../modules/deals/deals-list/DealsList'))
   const BrandsListWrapper = lazy(() => import('../modules/brands/brands-list/BrandsList'))
-  // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
 
   return (
     <Routes>
@@ -63,6 +61,14 @@ const PrivateRoutes = () => {
             <SuspensedView>
               <WidgetsPage />
               {/* <h1>Crafted widgets</h1> */}
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='deals/*'
+          element={
+            <SuspensedView>
+              <DealsListWrapper />
             </SuspensedView>
           }
         />
@@ -116,16 +122,6 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-
-        <Route
-          path='apps/deals/*'
-          element={
-            <SuspensedView>
-              <DealPage />
-            </SuspensedView>
-          }
-        />
-
 
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />

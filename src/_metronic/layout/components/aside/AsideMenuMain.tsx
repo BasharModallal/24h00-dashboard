@@ -10,39 +10,11 @@ export function AsideMenuMain() {
   return (
     <>
 
-      <AsideMenuItem
-          to='/apps/deals'
-          icon='element-5'
-          title='Deals'
-      />
-
-      {/* <AsideMenuItem
-
-        to='/brands'
-        icon='element-11'
-        title='Brands'
-      /> */}
-      <AsideMenuItem
-        to='/websites'
-        icon='element-12'
-        title='Deal Websites'
-      />
-
-      <AsideMenuItem
-        to='/apps/category-management/categories'
-        icon='element-5'
-        title='Categories'
-      />
-      
-
-      {/* <AsideMenuItem
-        to='/brands'
-        icon='element-12'
-        title='Brands'
-      /> */}
+      <AsideMenuItem to='/websites' icon='element-12' title='Deal Websites' />
+      <AsideMenuItem to='/apps/category-management/categories' icon='element-5' title='Category management' />
       <AsideMenuItem to='/brands' icon='shield-tick' title='Brand management' />
+      <AsideMenuItem to='/deals' icon='shield-tick' title='Deals management' />
 
->>>>>>> origin/dev
       {
         /* 
         <AsideMenuItem
