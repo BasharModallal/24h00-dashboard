@@ -9,8 +9,8 @@ import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { BrandPage } from '../pages/main/BrandPage'
 import BrandsPage from '../modules/apps/brands/BrandsPage'
-import WebsitesPage from "../modules/websites/WebsitesPage";
 import {WebsitesListWrapper} from "../modules/websites/WebsitesList.tsx";
+import {UsersListWrapper} from "../modules/users/users-list/UsersList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -78,6 +78,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <WebsitesListWrapper />
+            </SuspensedView>
+          }
+        />
+          <Route
+          path='users/*'
+          element={
+            <SuspensedView>
+              <UsersListWrapper />
             </SuspensedView>
           }
         />
