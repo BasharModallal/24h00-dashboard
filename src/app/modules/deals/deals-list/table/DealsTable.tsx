@@ -4,7 +4,7 @@ import { CustomHeaderColumn } from './columns/CustomHeaderColumn'
 import { CustomRow } from './columns/CustomRow'
 import { useQueryResponseData, useQueryResponseLoading } from '../core/QueryResponseProvider'
 import { dealsColumns } from './columns/_columns'
-import { Deal } from '../core/_models'
+import { Deal, DealResponse } from '../core/_models'
 import { DealsListLoading } from '../components/loading/DealsListLoading'
 import { DealsListPagination } from '../components/pagination/DealsListPagination'
 import { KTCardBody } from '../../../../../_metronic/helpers'
@@ -29,14 +29,14 @@ const DealsTable = () => {
         >
           <thead>
             <tr className='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
-              {headers.map((column: ColumnInstance<Deal>) => (
+              {headers.map((column: ColumnInstance<DealResponse>) => (
                 <CustomHeaderColumn key={column.id} column={column} />
               ))}
             </tr>
           </thead>
           <tbody className='text-gray-600 fw-bold' {...getTableBodyProps()}>
             {rows.length > 0 ? (
-              rows.map((row: Row<Deal>, i) => {
+              rows.map((row: Row<DealResponse>, i) => {
                 prepareRow(row)
                 return <CustomRow row={row} key={`row-${i}-${row.id}`} />
               })

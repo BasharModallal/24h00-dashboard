@@ -12,10 +12,10 @@ import {
   WithChildren,
 } from '../../../../../_metronic/helpers'
 import { getDeals } from './_requests'
-import { Deal } from './_models'
+import { Deal, DealResponse } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
-const QueryResponseContext = createResponseContext<Deal>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<DealResponse>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   const { state } = useQueryRequest()
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
@@ -32,7 +32,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.USERS_LIST}-${query}`,
+    `${QUERIES.DEALS_LIST}-${query}`,
     () => {
       return getDeals(query)
     },

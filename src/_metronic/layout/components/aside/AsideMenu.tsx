@@ -1,16 +1,16 @@
-import React, {useRef, useEffect} from 'react'
-import {useLocation} from 'react-router'
+import React, { useRef, useEffect } from 'react'
+import { useLocation } from 'react-router'
 import clsx from 'clsx'
-import {AsideMenuMain} from './AsideMenuMain'
-import {DrawerComponent, ScrollComponent, ToggleComponent} from '../../../assets/ts/components'
+import { AsideMenuMain } from './AsideMenuMain'
+import { DrawerComponent, ScrollComponent, ToggleComponent } from '../../../assets/ts/components'
 
 type Props = {
   asideMenuCSSClasses: string[]
 }
 
-const AsideMenu: React.FC<Props> = ({asideMenuCSSClasses}) => {
+const AsideMenu: React.FC<Props> = ({ asideMenuCSSClasses }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const {pathname} = useLocation()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ const AsideMenu: React.FC<Props> = ({asideMenuCSSClasses}) => {
         scrollRef.current.scrollTop = 0
       }
     }, 50)
-     
+
   }, [pathname])
 
   return (
@@ -49,4 +49,4 @@ const AsideMenu: React.FC<Props> = ({asideMenuCSSClasses}) => {
   )
 }
 
-export {AsideMenu}
+export { AsideMenu }

@@ -9,7 +9,7 @@ const DealsListSearchComponent = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
-  // The goal is to only have the API call fire when brand stops typing ...
+  // The goal is to only have the API call fire when deal stops typing ...
   // ... so that we aren't hitting our API rapidly.
   const debouncedSearchTerm = useDebounce(searchTerm, 150)
   // Effect for API call
@@ -30,9 +30,9 @@ const DealsListSearchComponent = () => {
         <KTIcon iconName='magnifier' className='fs-1 position-absolute ms-6' />
         <input
           type='text'
-          data-kt-brand-table-filter='search'
+          data-kt-deal-table-filter='search'
           className='form-control form-control-solid w-250px ps-14'
-          placeholder='Search brand'
+          placeholder='Search deal'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

@@ -9,7 +9,7 @@ import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { WebsitesListWrapper } from "../modules/websites/WebsitesList.tsx";
 // import { BrandsListWrapper } from "../modules/brands/brands-list/BrandsList.tsx";
-import {UsersListWrapper} from "../modules/users/users-list/UsersList.tsx";
+import { UsersListWrapper } from "../modules/users/users-list/UsersList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -26,7 +26,7 @@ const PrivateRoutes = () => {
     <Routes>
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+        <Route path='auth/*' element={<Navigate to='/deals' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route
@@ -89,7 +89,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-          <Route
+        <Route
           path='users/*'
           element={
             <SuspensedView>
