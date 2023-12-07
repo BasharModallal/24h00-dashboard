@@ -27,7 +27,7 @@ const createWebsite = (website: Website): Promise<Website | undefined> => {
         .then((response: AxiosResponse<Response<Website>>) => response.data)
         .then((response: Response<Website>) => response.data);
 }
-
+ 
 const updateWebsite = (website: Website): Promise<Website | undefined> => {
     return axios
         .post(`${WEBSITE_URL}/${website.id}`, website)

@@ -13,7 +13,7 @@ export type Deal = {
 export type DealsQueryResponse = Response<Array<Deal>>
 
 export const initialDeal: Deal = {
-  image: 'avatars/300-6.jpg',
   title: '',
+  image: null,
   description: '',
 }

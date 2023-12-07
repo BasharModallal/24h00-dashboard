@@ -7,9 +7,8 @@ import { MenuTestPage } from '../pages/MenuTestPage'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import { BrandPage } from '../pages/main/BrandPage'
-import BrandsPage from '../modules/apps/brands/BrandsPage'
-import {WebsitesListWrapper} from "../modules/websites/WebsitesList.tsx";
+import { WebsitesListWrapper } from "../modules/websites/WebsitesList.tsx";
+// import { BrandsListWrapper } from "../modules/brands/brands-list/BrandsList.tsx";
 import {UsersListWrapper} from "../modules/users/users-list/UsersList.tsx";
 
 const PrivateRoutes = () => {
@@ -19,9 +18,12 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  const CategoryPage = lazy(() => import('../../app/category/CategoryPage'))
+  const CategoryPage = lazy(() => import('../../app/modules/category/CategoryPage'))
   const DealPage = lazy(() => import('../../app/deals/DealPage'))
    
+  const BrandsListWrapper = lazy(() => import('../modules/brands/brands-list/BrandsList'))
+  // const WebsitesPage = lazy(() => import('../modules/websites/WebsitesPage'))
+
   return (
     <Routes>
       <Route element={<MasterLayout />}>
@@ -69,11 +71,11 @@ const PrivateRoutes = () => {
           path='brands/*'
           element={
             <SuspensedView>
-              <BrandPage className='' />
+              <BrandsListWrapper />
             </SuspensedView>
           }
         />
-          <Route
+        <Route
           path='websites/*'
           element={
             <SuspensedView>
@@ -89,6 +91,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+
         <Route
           path='crafted/account/*'
           element={
@@ -114,7 +117,7 @@ const PrivateRoutes = () => {
           }
         />
 
-<Route
+        <Route
           path='apps/category-management/*'
           element={
             <SuspensedView>
@@ -124,7 +127,7 @@ const PrivateRoutes = () => {
         />
         {/* Deals */}
 
-<Route
+        <Route
           path='apps/deals/*'
           element={
             <SuspensedView>
@@ -133,14 +136,6 @@ const PrivateRoutes = () => {
           }
         />
 
-        <Route
-          path='apps/brand-management/*'
-          element={
-            <SuspensedView>
-              <BrandsPage />
-            </SuspensedView>
-          }
-        />
 
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
