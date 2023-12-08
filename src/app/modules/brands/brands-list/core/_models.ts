@@ -27,5 +27,4 @@ export type BrandResponse = {
   created_at?: string
   updated_at?: string
   view_count?: number
-
 }
