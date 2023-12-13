@@ -1,18 +1,19 @@
-import {useQuery} from 'react-query'
-import {DealEditModalForm} from './DealEditModalForm'
-import {isNotEmpty, QUERIES} from '../../../../../_metronic/helpers'
-import {useListView} from '../core/ListViewProvider'
-import {getDealById} from '../core/_requests'
+import { useQuery } from 'react-query'
+import { DealEditModalForm } from './DealEditModalForm'
+import { isNotEmpty, QUERIES } from '../../../../../_metronic/helpers'
+import { useListView } from '../core/ListViewProvider'
+import { getDealById } from '../core/_requests'
+import { initialDeal } from '../core/_models'
 
 const DealEditModalFormWrapper = () => {
-  const {itemIdForUpdate, setItemIdForUpdate} = useListView()
+  const { itemIdForUpdate, setItemIdForUpdate } = useListView()
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
   const {
     isLoading,
-    data: brand,
+    data: deal,
     error,
   } = useQuery(
-    `${QUERIES.USERS_LIST}-deals-${itemIdForUpdate}`,
+    `${QUERIES.DEALS_LIST}-deals-${itemIdForUpdate}`,
     () => {
       return getDealById(itemIdForUpdate)
     },
@@ -27,14 +28,14 @@ const DealEditModalFormWrapper = () => {
   )
 
   if (!itemIdForUpdate) {
-    return <DealEditModalForm isBrandLoading={isLoading} brand={{id: undefined}} />
+    return <DealEditModalForm isBrandLoading={isLoading} deal={{ ...initialDeal }} />
   }
 
-  if (!isLoading && !error && brand) {
-    return <DealEditModalForm isBrandLoading={isLoading} brand={brand} />
+  if (!isLoading && !error && deal) {
+    return <DealEditModalForm isBrandLoading={isLoading} deal={deal} />
   }
 
   return null
 }
 
-export {DealEditModalFormWrapper}
+export { DealEditModalFormWrapper }

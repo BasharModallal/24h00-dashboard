@@ -11,7 +11,7 @@ const DealCategoryCell: FC<Props> = ({ deal }) => (
     <div className='d-flex align-items-center'>
         <div className='d-flex flex-column'>
             <a href='#' className='text-gray-800 text-hover-primary mb-1'>
-                {deal.category_details.name}
+                {deal?.category_details?.name}
             </a>
         </div>
     </div>

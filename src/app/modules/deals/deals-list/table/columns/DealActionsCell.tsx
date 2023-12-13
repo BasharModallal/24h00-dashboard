@@ -5,7 +5,7 @@ import { MenuComponent } from '../../../../../../_metronic/assets/ts/components'
 import { ID, KTIcon, QUERIES } from '../../../../../../_metronic/helpers'
 import { useListView } from '../../core/ListViewProvider'
 import { useQueryResponse } from '../../core/QueryResponseProvider'
-import { deleteDeal } from '../../core/_requests'
+import { deleteDeal, approveDeal, rejectDeal } from '../../core/_requests'
 
 type Props = {
   id: ID
@@ -24,6 +24,20 @@ const DealActionsCell: FC<Props> = ({ id }) => {
     setItemIdForUpdate(id)
   }
 
+  const approveItem = useMutation(() => approveDeal(id), {
+    // 💡 response of the mutation is passed to onSuccess
+    onSuccess: () => {
+      // ✅ update detail view directly
+      queryClient.invalidateQueries([`${QUERIES.USERS_LIST}-${query}`])
+    },
+  })
+  const  rejectItem = useMutation(() => rejectDeal(id), {
+    // 💡 response of the mutation is passed to onSuccess
+    onSuccess: () => {
+      // ✅ update detail view directly
+      queryClient.invalidateQueries([`${QUERIES.USERS_LIST}-${query}`])
+    },
+  }) 
   const deleteItem = useMutation(() => deleteDeal(id), {
     // 💡 response of the mutation is passed to onSuccess
     onSuccess: () => {
@@ -57,14 +71,14 @@ const DealActionsCell: FC<Props> = ({ id }) => {
         {/* end::Menu item */}
         {/* begin::Menu item */}
         <div className='menu-item px-3'>
-          <a className='menu-link px-3' onClick={openEditModal}>
+          <a className='menu-link px-3' onClick={async () => await approveItem.mutateAsync()}>
             Aprove
           </a>
         </div>
         {/* end::Menu item */}
         {/* begin::Menu item */}
         <div className='menu-item px-3'>
-          <a className='menu-link px-3' onClick={openEditModal}>
+          <a className='menu-link px-3' onClick={async () => await rejectItem.mutateAsync()}>
             Reject
           </a>
         </div>
@@ -80,7 +94,7 @@ const DealActionsCell: FC<Props> = ({ id }) => {
           </a>
         </div>
         {/* end::Menu item */}
-      </div>
+      </div >
       {/* end::Menu */}
     </>
   )

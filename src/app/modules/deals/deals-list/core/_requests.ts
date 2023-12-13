@@ -55,6 +55,13 @@ const createFormData = (data: Record<string, any>): FormData => {
   return formData;
 };
 
+const approveDeal = (dealId: ID): Promise<void> => {
+  return axios.post(`${API_URL}/approve-deal/${dealId}`).then(() => { });
+};
+
+const rejectDeal = (dealId: ID): Promise<void> => {
+  return axios.post(`${API_URL}/reject-deal/${dealId}`).then(() => { });
+};
 
 const deleteDeal = (dealId: ID): Promise<void> => {
   return axios.delete(`${DEALS_URL}/${dealId}`).then(() => { });
@@ -72,4 +79,6 @@ export {
   getDealById,
   createDeal,
   updateDeal,
+  approveDeal,
+  rejectDeal
 };
