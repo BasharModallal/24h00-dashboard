@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { ID, Response } from "../../../../../../_metronic/helpers";
 import { User, UsersQueryResponse } from "./_models";
+import {ID, Response} from "../../../../../_metronic/helpers";
 
 const API_URL = import.meta.env.VITE_APP_THEME_API_URL;
-const USER_URL = `${API_URL}/user`;
-const GET_USERS_URL = `${API_URL}/users/query`;
+const USER_URL = `${API_URL}/users`;
+const GET_USERS_URL = `${API_URL}/users`;
 
 const getUsers = (query: string): Promise<UsersQueryResponse> => {
   return axios

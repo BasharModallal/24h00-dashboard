@@ -46,7 +46,9 @@ export function Login() {
         auth.token = auth.data['token'];
         saveAuth(auth)
         const {data: user} = await getUserByToken(auth.token)
-        auth.token = user.token;
+        if (user.token != null) {
+          auth.token = user.token;
+        }
         saveAuth(auth)
         setCurrentUser(user)
       } catch (error) {

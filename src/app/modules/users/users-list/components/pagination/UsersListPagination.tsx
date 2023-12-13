@@ -2,8 +2,8 @@
 import clsx from 'clsx'
 import {useQueryResponseLoading, useQueryResponsePagination} from '../../core/QueryResponseProvider'
 import {useQueryRequest} from '../../core/QueryRequestProvider'
-import {PaginationState} from '../../../../../../../_metronic/helpers'
 import {useMemo} from 'react'
+import {PaginationState} from "../../../../../../_metronic/helpers";
 
 const mappedLabel = (label: string): string => {
   if (label === '&laquo; Previous') {
