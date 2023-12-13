@@ -55,7 +55,20 @@ const DealActionsCell: FC<Props> = ({ id }) => {
           </a>
         </div>
         {/* end::Menu item */}
-
+        {/* begin::Menu item */}
+        <div className='menu-item px-3'>
+          <a className='menu-link px-3' onClick={openEditModal}>
+            Aprove
+          </a>
+        </div>
+        {/* end::Menu item */}
+        {/* begin::Menu item */}
+        <div className='menu-item px-3'>
+          <a className='menu-link px-3' onClick={openEditModal}>
+            Reject
+          </a>
+        </div>
+        {/* end::Menu item */}
         {/* begin::Menu item */}
         <div className='menu-item px-3'>
           <a

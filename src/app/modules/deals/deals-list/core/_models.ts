@@ -1,4 +1,10 @@
 import { ID, Response } from '../../../../../_metronic/helpers'
+export enum DealStatus {
+  Pending = 0,
+  Active = 1,
+  Rejected = 2,
+  Expired = 3,
+}
 export type Deal = {
   id?: ID
   name?: string
@@ -7,7 +13,7 @@ export type Deal = {
   images?: File | null,
   coupon: string;
   user_id: number;
-  status: number;
+  status: DealStatus;
   oldprice: string;
   newprice: string;
   website_id: number;
@@ -88,7 +94,7 @@ export interface DealResponse {
   images: string[];
   coupon: string;
   user_id: number;
-  status: number;
+  status: DealStatus;
   oldprice: string;
   newprice: string;
   website_id: number;
@@ -117,7 +123,7 @@ export interface DealResponse {
   created_at: string | null,
   updated_at: string | null,
 }
-export type DealsQueryResponse = Response<Array<Deal>>
+export type DealsQueryResponse = Response<Array<DealResponse>>
 
 export const initialDeal: Deal = {
   images: null,
@@ -126,7 +132,7 @@ export const initialDeal: Deal = {
   description: '',
   coupon: '',
   user_id: 0,
-  status: 0,
+  status: DealStatus.Active,
   oldprice: '',
   newprice: '',
   website_id: 0,

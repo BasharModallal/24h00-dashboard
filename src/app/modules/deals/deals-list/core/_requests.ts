@@ -18,10 +18,10 @@ const getDealById = (id: ID): Promise<Deal | undefined> => {
     .then((response: Response<Deal>) => response.data);
 };
 
-const createDeal = (brand: Deal): Promise<Deal | undefined> => {
+const createDeal = (deal: Deal): Promise<Deal | undefined> => {
   const formData = new FormData();
-  formData.append('name', brand.name || ''); // Assuming brand.name is required
-  formData.append('image', brand.image as Blob);
+  formData.append('name', deal.name || ''); // Assuming deal.name is required
+  formData.append('image', deal.images as Blob);
 
   return axios
     .post(DEALS_URL, formData, {
@@ -32,15 +32,15 @@ const createDeal = (brand: Deal): Promise<Deal | undefined> => {
     .then((response: AxiosResponse<Response<Deal>>) => response.data)
     .then((response: Response<Deal>) => response.data);
 };
-const updateDeal = (brand: Deal): Promise<Deal | undefined> => {
-  const isImageProvided = Boolean(brand.image);
+const updateDeal = (deal: Deal): Promise<Deal | undefined> => {
+  const isImageProvided = Boolean(deal.images);
 
   const requestData = isImageProvided
-    ? { name: brand.name, image: brand.image as Blob }
-    : { name: brand.name };
+    ? { name: deal.name, image: deal.images as Blob }
+    : { name: deal.name };
 
   return axios
-    .post(`${DEALS_URL}/${brand.id}`, isImageProvided ? createFormData(requestData) : requestData)
+    .post(`${DEALS_URL}/${deal.id}`, isImageProvided ? createFormData(requestData) : requestData)
     .then((response: AxiosResponse<Response<Deal>>) => response.data)
     .then((response: Response<Deal>) => response.data);
 };
@@ -56,12 +56,12 @@ const createFormData = (data: Record<string, any>): FormData => {
 };
 
 
-const deleteDeal = (brandId: ID): Promise<void> => {
-  return axios.delete(`${DEALS_URL}/${brandId}`).then(() => { });
+const deleteDeal = (dealId: ID): Promise<void> => {
+  return axios.delete(`${DEALS_URL}/${dealId}`).then(() => { });
 };
 
-const deleteSelectedDeals = (brandIds: Array<ID>): Promise<void> => {
-  const requests = brandIds.map((id) => axios.delete(`${DEALS_URL}/${id}`));
+const deleteSelectedDeals = (dealIds: Array<ID>): Promise<void> => {
+  const requests = dealIds.map((id) => axios.delete(`${DEALS_URL}/${id}`));
   return axios.all(requests).then(() => { });
 };
 

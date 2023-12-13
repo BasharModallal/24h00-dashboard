@@ -9,7 +9,7 @@ import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import { WebsitesListWrapper } from "../modules/websites/WebsitesList.tsx";
 // import { BrandsListWrapper } from "../modules/brands/brands-list/BrandsList.tsx";
-import {UsersListWrapper} from "../modules/users/users-list/UsersList.tsx";
+import { UsersListWrapper } from "../modules/users/users-list/UsersList.tsx";
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -26,20 +26,45 @@ const PrivateRoutes = () => {
     <Routes>
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+        <Route path='auth/*' element={<Navigate to='dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
 
         {/* Lazy Modules */}
 
         <Route
+          path='crafted/pages/profile/*'
+          element={
+            <SuspensedView>
+              <ProfilePage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/wizards/*'
+          element={
+            <SuspensedView>
+              <WizardsPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/widgets/*'
+          element={
+            <SuspensedView>
+              <WidgetsPage />
+              {/* <h1>Crafted widgets</h1> */}
+            </SuspensedView>
+          }
+        />
+        {/* <Route
           path='deals/*'
           element={
             <SuspensedView>
               <DealsListWrapper />
             </SuspensedView>
           }
-        />
+        /> */}
         <Route
           path='brands/*'
           element={
@@ -56,7 +81,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-          <Route
+        <Route
           path='users/*'
           element={
             <SuspensedView>

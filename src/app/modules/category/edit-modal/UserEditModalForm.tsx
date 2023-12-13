@@ -94,6 +94,16 @@ const UserEditModalForm: FC<Props> = ({category, isUserLoading}) => {
                 className='image-input-wrapper w-125px h-125px'
                 style={{backgroundImage: `url('${userAvatarImg}')`}}
               ></div>
+
+<div
+                className='image-input image-input-outline'
+                data-kt-image-input='true'
+                style={{ backgroundImage: `url('${blankImg}')` }}
+              >
+                <input id="image" name="image" type="file" onChange={(event) => {
+                  formik.setFieldValue("image", event.currentTarget.files?.[0]);
+                }} />
+              </div>
               {/* end::Preview existing avatar */}
 
               {/* begin::Label */}
