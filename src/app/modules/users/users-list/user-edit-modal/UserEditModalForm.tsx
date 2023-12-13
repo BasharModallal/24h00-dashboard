@@ -34,13 +34,9 @@ const editUserSchema = Yup.object().shape({
     .max(50, 'Maximum 50 symbols')
     .required('Last Name is required'),
   password: Yup.string()
-      .when('$isUpdate', {
-        is: true,
-        then: Yup.string()
-            .min(8, 'Minimum 8 symbols')
-            .max(50, 'Maximum 50 symbols')
-            .required('Password is required')
-      }),
+      .min(8, 'Minimum 8 symbols')
+      .max(50, 'Maximum 50 symbols')
+      .required('Password is required'),
   changepassword: Yup.string()
       .min(8, 'Minimum 8 symbols')
       .max(50, 'Maximum 50 symbols')
@@ -103,7 +99,8 @@ const UserEditModalForm: FC<Props> = ({user, isUserLoading}) => {
             console.log(emailErrors)
           }
         } else {
-          console.error('An unexpected error occurred:', ex.response);
+          if (axios.isAxiosError(ex) && ex.response)
+            console.error('An unexpected error occurred:', ex.response);
         }
         console.log(ex)
         console.error(ex)
