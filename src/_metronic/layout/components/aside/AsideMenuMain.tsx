@@ -9,6 +9,10 @@ export function AsideMenuMain() {
 
   return (
     <>
+
+        <AsideMenuItemWithSub to='/users' icon='profile-circle' title='User Management' >
+            <AsideMenuItem to='/users/user-list' icon='profile-circle' title='User List' />
+        </AsideMenuItemWithSub>
         <AsideMenuItem to='/websites' icon='element-12' title='Deal Websites' />
         <AsideMenuItem to='/apps/category-management/categories' icon='element-5' title='Category management' />
         <AsideMenuItem to='/brands' icon='shield-tick' title='Brand management' />

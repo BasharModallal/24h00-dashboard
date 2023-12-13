@@ -29,42 +29,9 @@ const PrivateRoutes = () => {
         <Route path='auth/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
-        <Route
-          path='builder'
-          element={
-            <SuspensedView>
-              <BuilderPageWrapper />
-            </SuspensedView>
-          }
-        />
 
-        <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
-        <Route
-          path='crafted/pages/profile/*'
-          element={
-            <SuspensedView>
-              <ProfilePage />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='crafted/pages/wizards/*'
-          element={
-            <SuspensedView>
-              <WizardsPage />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='crafted/widgets/*'
-          element={
-            <SuspensedView>
-              <WidgetsPage />
-              {/* <h1>Crafted widgets</h1> */}
-            </SuspensedView>
-          }
-        />
+
         <Route
           path='deals/*'
           element={
@@ -98,22 +65,6 @@ const PrivateRoutes = () => {
           }
         />
 
-        <Route
-          path='crafted/account/*'
-          element={
-            <SuspensedView>
-              <AccountPage />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='apps/chat/*'
-          element={
-            <SuspensedView>
-              <ChatPage />
-            </SuspensedView>
-          }
-        />
         <Route
           path='apps/user-management/*'
           element={
