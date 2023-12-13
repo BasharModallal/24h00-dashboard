@@ -2,14 +2,14 @@ import {useQueryClient, useMutation} from 'react-query'
 import {QUERIES} from '../../../../../_metronic/helpers'
 import {useListView} from '../../core/ListViewProvider'
 import {useQueryResponse} from '../../core/QueryResponseProvider'
-import {deleteCategories} from '../../core/_requests'
+import {deleteSelectedCategories} from '../../core/_requests'
 
 const UsersListGrouping = () => {
   const {selected, clearSelected} = useListView()
   const queryClient = useQueryClient()
   const {query} = useQueryResponse()
 
-  const deleteSelectedItems = useMutation(() => deleteCategories(selected), {
+  const deleteSelectedItems = useMutation(() => deleteSelectedCategories(selected), {
     // 💡 response of the mutation is passed to onSuccess
     onSuccess: () => {
       // ✅ update detail view directly
